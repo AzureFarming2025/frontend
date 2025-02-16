@@ -9,13 +9,13 @@ const SidebarToggle = ({ sidebarExpanded, setSidebarExpanded }) => {
     <MdOutlineKeyboardDoubleArrowRight size={32}/>
   );
   return (
-    <div className="pt-3 hidden lg:inline-flex justify-end mt-auto flex-col items-end">
+    <div className="pt-3 px-auto hidden lg:inline-flex mt-auto flex-col items-end">
       <button
-        className="w-20 px-6 py-2 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400"
+        className="w-20 px-8 py-2 text-gray-300 hover:text-gray-400"
         onClick={() => setSidebarExpanded(!sidebarExpanded)}
       >
         {sidebarExpanded ? (UnFoldIcon): (FoldIcon)}
-        <span>Collapse</span>
+        <span></span>
       </button>
     </div>
   );

@@ -6,8 +6,8 @@ import { FiLogOut } from "react-icons/fi";
 
 export const sidebarConfig = [
   {
-    title: "Dashboard",
-    path: "/dashboard",
+    title: "Home",
+    path: "/",
     icon: BiHomeAlt,
     type: "link",
   },
