@@ -4,8 +4,9 @@ import Sidebar from '../partials/sidebar/Sidebar';
 import Header from '../partials/Header';
 import FilterButton from '../components/DropdownFilter';
 import Datepicker from '../components/Datepicker';
-import DashboardCard01 from '../partials/dashboard/DashboardCard01';
 import Banner from '../partials/Banner';
+import ActivityLogCard from '../components/ActivityLogCard'; // 활동 로그 카드 컴포넌트
+import { MdTimeline, MdEmojiEvents, MdHistory } from "react-icons/md";
 
 export default function Activities() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -24,7 +25,6 @@ export default function Activities() {
             targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
           }, 0);
         } else {
-          // 요소가 아직 렌더링되지 않은 경우 MutationObserver 사용
           const observer = new MutationObserver(() => {
             const newTarget = document.getElementById(targetId);
             if (newTarget) {
@@ -41,6 +41,13 @@ export default function Activities() {
     scrollToHash();
   }, [location]);
 
+  // ✅ 더미 데이터: 사용자 활동 로그
+  const activityLogs = [
+    { id: 1, type: "watering", description: "Watered 'Tomato Plant'", timestamp: "2025-02-16 10:30", icon: <MdHistory size={24} /> },
+    { id: 2, type: "harvest", description: "Harvested 'Basil'", timestamp: "2025-02-15 14:15", icon: <MdEmojiEvents size={24} /> },
+    { id: 3, type: "new-plant", description: "Started growing 'Mint'", timestamp: "2025-02-14 09:45", icon: <MdTimeline size={24} /> },
+  ];
+
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -52,43 +59,44 @@ export default function Activities() {
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <main className="grow">
-          <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+          <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-7xl mx-auto">
 
             {/* Dashboard actions */}
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
               {/* Left: Title */}
               <div className="mb-4 sm:mb-0">
-                <h1 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Dashboard</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Activity Log</h1>
+                <p className="text-gray-600 dark:text-gray-400">View your recent actions and track plant progress.</p>
               </div>
 
               {/* Right: Actions */}
               <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
                 <FilterButton align="right" />
                 <Datepicker align="right" />
-                <button className="btn bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">
-                  <span className="max-xs:sr-only">Add View</span>
-                </button>                
               </div>
             </div>
 
-            {/* Cards */}
-            <div className="grid grid-cols-12 gap-6">
-              {/* 일반적인 컴포넌트 */}
-              <DashboardCard01 />
+            {/* Cards: Activity Logs */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {activityLogs.map((log) => (
+                <ActivityLogCard key={log.id} log={log} />
+              ))}
+            </div>
 
-              {/* ✅ 해시 이동 테스트 */}
-              <button
-                onClick={() => navigate("#users")}
-                className="btn bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                이동: Users 섹션
-              </button>
+            {/* 해시 이동 테스트 */}
+            <button
+              onClick={() => navigate("#logs")}
+              className="btn bg-blue-500 text-white px-4 py-2 rounded mt-6"
+            >
+              Scroll to Logs
+            </button>
 
-              <div id="users" className="mt-10 p-4 border border-gray-300 bg-gray-100 rounded">
-                <h2 className="text-xl font-bold">Users 섹션</h2>
-                <DashboardCard01 />
-              </div>
-
+            {/* Logs Section */}
+            <div id="logs" className="mt-10 p-6 border border-gray-300 bg-gray-100 rounded">
+              <h2 className="text-xl font-bold">Logs Section</h2>
+              {activityLogs.map((log) => (
+                <ActivityLogCard key={log.id} log={log} />
+              ))}
             </div>
 
           </div>

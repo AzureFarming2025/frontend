@@ -12,6 +12,10 @@ import './charts/ChartjsConfig';
 // Import pages
 import Dashboard from './pages/Dashboard';
 import Activities from './pages/Activities';
+import Profile from "./pages/Profile";
+import About from "./pages/About";
+import Details from './pages/Details';
+
 
 function App() {
 
@@ -28,6 +32,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Dashboard />} />
         <Route exact path="/activities" element={<Activities />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/details" element={<Details />} />
       </Routes>
     </>
   );
