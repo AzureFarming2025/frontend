@@ -15,6 +15,7 @@ import Activities from './pages/Activities';
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import Details from './pages/Details';
+import { SignIn, SignUp, ForgotPassword } from './pages/Auth';
 
 
 function App() {
@@ -30,7 +31,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Dashboard />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/activities" element={<Activities />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<About />} />

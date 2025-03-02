@@ -5,12 +5,70 @@
 
 @plugin "@tailwindcss/forms" {
   strategy: base;
-}
+};
+
+@plugin "daisyui";
+@plugin 'tailwind-scrollbar-hide';
 
 @custom-variant dark (&:is(.dark *));
 @custom-variant sidebar-expanded (&:is(.sidebar-expanded *));
 
 @theme {
+  /* Primary Color Scale */
+  --color-primary-100: #E3F2FD;
+  --color-primary-200: #BBDEFB;
+  --color-primary-300: #90CAF9;
+  --color-primary-400: #64B5F6;
+  --color-primary-500: #42A5F5;
+  --color-primary-600: #2196F3;
+  --color-primary-700: #1E88E5;
+  --color-primary-800: #1976D2;
+  --color-primary-900: #1565C0;
+
+  /* Secondary Colors */
+  --color-secondary-100: #FFF3E0;
+  --color-secondary-500: #FF9800;
+  --color-secondary-900: #E65100;
+
+  /* Additional Colors */
+  --color-danger: #F44336;
+  --color-accent: #E91E63;
+  --color-success: #4CAF50;
+  --color-info: #2196F3;
+
+  /* Grayscale */
+  --color-gray-100: #F5F5F5;
+  --color-gray-200: #EEEEEE;
+  --color-gray-300: #E0E0E0;
+  --color-gray-400: #BDBDBD;
+  --color-gray-500: #9E9E9E;
+  --color-gray-600: #757575;
+  --color-gray-700: #616161;
+  --color-gray-800: #424242;
+  --color-gray-900: #212121;
+
+  /* 폰트 설정 */
+  --font-primary: "Pretendard", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
+
+  /* 타이포그래피 */
+  --text-title: 2rem;
+  --text-heading: 1.75rem;
+  --text-subheading: 1.5rem;
+  --text-body: 1rem;
+  --text-link: 1rem;
+  --text-caption: 0.875rem;
+  --text-overline: 0.75rem;
+  
+  /* Radius */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+  --radius-xl: 24px;
+  --radius-rounded: 9999px;
+
   --shadow-sm: 0 1px 1px 0 rgb(0 0 0 / 0.05), 0 1px 2px 0 rgb(0 0 0 / 0.02);
 
   --color-gray-50: #f9fafb;
