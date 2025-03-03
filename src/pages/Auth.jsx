@@ -1,113 +1,89 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
-import termsConfig from "../config/termsConfig"; // 규정 파일 import
+import { FaGoogle,  FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import termsConfig from "../config/termsConfig";
 
-const AuthLayout = ({ children }) => {
-  return (
-    <div className="flex h-screen w-full items-center justify-center bg-base-200 p-6">
-      <div className="w-full max-w-lg md:max-w-3xl bg-white rounded-lg shadow-xl flex flex-col md:flex-row md:divide-x">
-        <div className="hidden md:flex md:w-1/2 items-center justify-center p-4 bg-primary rounded-l-lg">
-          <div className="text-white text-2xl font-bold">Illustration Here</div>
-        </div>
-        <div className="w-full md:w-1/2 p-8">{children}</div>
+const AuthLayout = ({ children }) => (
+  <div className="flex h-screen w-full items-center justify-center bg-base-200 p-6">
+    <div className="w-full max-w-lg md:max-w-3xl rounded-box bg-white shadow-xl flex flex-col md:flex-row md:divide-x">
+      <div className="hidden md:flex md:w-1/2 items-center justify-center p-4 bg-primary rounded-l-box">
+        <div className="text-white text-2xl font-bold">Illustration Here</div>
       </div>
+      <div className="w-full md:w-1/2 p-8">{children}</div>
     </div>
-  );
-};
+  </div>
+);
 
-const AuthButton = ({ text, disabled = false }) => {
-  return (
-    <button className={`btn btn-primary w-full ${disabled ? "btn-disabled" : ""}`} disabled={disabled}>
-      {text}
-    </button>
-  );
-};
+const AuthButton = ({ text, disabled = false }) => (
+  <button className={`btn btn-primary h-10 w-full ${disabled ? "btn-disabled" : ""}`} disabled={disabled}>
+    {text}
+  </button>
+);
 
-const OAuthButton = () => {
-  return (
-    <button className="btn btn-outline btn-error w-full flex items-center justify-center">
-      <FaGoogle className="mr-2" /> Sign in with Google
-    </button>
-  );
-};
+const OAuthButton = ({ text }) => (
+  <button className="btn btn-outline btn-error w-full flex items-center justify-center">
+    <FaGoogle className="mr-2" /> {text} with Google
+  </button>
+);
 
-
-export const SignIn = () => {
-  return (
-    <AuthLayout>
-      <div className="space-y-5">
-        <h2 className="text-2xl font-bold text-center">Sign In</h2>
-        <div>
-          <label className="block text-gray-600">Email</label>
-          <InputField type="email" placeholder="example.email@gmail.com" />
-        </div>
-        <div>
-          <label className="block text-gray-600">Password</label>
-          <InputField type="password" placeholder="Enter at least 8+ characters" />
-        </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input type="checkbox" id="remember" className="mr-2" />
-            <label htmlFor="remember" className="text-gray-600">Remember me</label>
-          </div>
-          <Link to="/forgot-password" className="text-primary-500">Forgot password?</Link>
-        </div>
-        <AuthButton text="Sign in" />
-        <div className="flex items-center justify-center">
-          <span className="text-gray-400">OR</span>
-        </div>
-        <OAuthButton />
-        <div className="text-center">
-          <span className="text-gray-600">Don't have an account? </span>
-          <Link to="/signup" className="text-primary-500">Sign up</Link>
-        </div>
-      </div>
-    </AuthLayout>
-  );
-};
-
-export const ForgotPassword = () => {
-  return (
-    <AuthLayout>
-      <div className="space-y-5">
-        <h2 className="text-2xl font-bold text-center">Reset Password</h2>
-        <div>
-          <label className="block text-gray-600">Email</label>
-          <InputField type="email" placeholder="Enter your email" />
-        </div>
-        <AuthButton text="Send reset link" />
-        <div className="text-center">
-          <Link to="/" className="text-primary-500">Back to Sign in</Link>
-        </div>
-      </div>
-    </AuthLayout>
-  );
-};
-
-const InputField = ({ type, placeholder, value, onChange }) => {
+const InputField = ({ type, label, placeholder, value, onChange }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isValid, setIsValid] = useState(true);
+
+  const handleValidation = (e) => {
+    setIsValid(e.target.checkValidity());
+    onChange(e);
+  };
+
   return (
-    <div className="relative w-full">
-      <input
-        type={showPassword && type === "password" ? "text" : type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className="input input-bordered w-full"
-      />
-      {type === "password" && (
-        <button
-          type="button"
-          className="absolute right-3 top-3 text-gray-500"
-          onClick={() => setShowPassword(!showPassword)}
+    <div className="form-control w-full">
+      <fieldset className="fieldset px-1">
+        <legend className="fieldset-legend px-2">{label}</legend>
+        <label
+          className={`input input-ghost border-0 border-b-2 rounded-none px-0 flex items-center ${
+            !isValid ? "border-error" : "border-gray-300"
+          } focus-within:border-primary`}
         >
-          {showPassword ? <FaEyeSlash /> : <FaEye />}
-        </button>
-      )}
+          <input
+            type={type === "password" && showPassword ? "text" : type}
+            placeholder={placeholder}
+            value={value}
+            onChange={handleValidation}
+            className="grow text-gray-700 focus:outline-none focus:ring-0 text-caption"
+            required
+          />
+          {type === "password" && (
+            <button
+              type="button"
+              className="opacity-50 absolute right-3"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+            </button>
+          )}
+        </label>
+        {!isValid && (
+          <div className="fieldset-label text-error pl-1.5">
+            {type === "email" ? "Enter a valid email address" : "Invalid input"}
+          </div>
+        )}
+      </fieldset>
     </div>
   );
 };
+
+const FindPassword = () => (
+  <AuthLayout>
+    <div className="space-y-5">
+      <h2 className="text-2xl font-bold text-center">Find Password</h2>
+      <InputField type="email" label="Email" placeholder="Enter your email" />
+      <AuthButton text="Send reset link" />
+      <div className="text-center">
+        <Link to="/" className="text-primary text-overline">Back to Sign in</Link>
+      </div>
+    </div>
+  </AuthLayout>
+);
 
 const TermsModal = ({ isOpen, onClose, onAccept }) => {
   const [checkedItems, setCheckedItems] = useState({});
@@ -120,32 +96,34 @@ const TermsModal = ({ isOpen, onClose, onAccept }) => {
 
   return (
     <div className={`modal ${isOpen ? "modal-open" : ""}`}> 
-      <div className="modal-box max-h-[80vh] flex flex-col overflow-hidden">
-        <h2 className="text-xl font-bold">Terms and Conditions</h2>
-        <div className="flex-grow mt-4 space-y-4 overflow-y-auto px-4">
+      <div className="modal-box p-8 max-h-[80vh] flex flex-col overflow-hidden">
+        <h2 className="text-lg font-semibold">Terms and Conditions</h2>
+        <div className="flex-grow mt-4 space-y-4 overflow-y-auto p-4 bg-base-200/30 rounded-lg">
           {Object.entries(termsConfig).map(([key, value]) => (
-            <div key={key} className="py-2">
-              <h3 className="text-md font-semibold mb-1">{value.title}</h3>
-              <div className="h-24 overflow-y-auto p-2 bg-gray-50 border border-gray-300 rounded-md">
-                <p className="text-gray-600 text-sm">{value.content}</p>
-              </div>
-              <div className="flex items-center mt-2">
+            <div key={key} className="">
+              <fieldset class="fieldset">
+                <legend class="fieldset-legend text-overline">{value.title}</legend>
+                <div className="h-auto max-h-24 min-h-20 overflow-y-auto p-3 bg-base-200">
+                  <p className="text-neutral/80 text-details">{value.content}</p>
+                </div>
+                <label class="fieldset-label text-neutral">
                 <input
                   type="checkbox"
                   checked={checkedItems[key] || false}
                   onChange={() => handleCheckboxChange(key)}
-                  className="checkbox mr-2"
+                  className="checkbox checkbox-sm mr-1"
                 />
-                <label className="text-gray-700 text-sm">{value.label}</label>
-              </div>
+                 {value.label}
+                </label>
+              </fieldset>
             </div>
           ))}
         </div>
-        <div className="modal-action flex justify-between w-full px-4">
-          <button className="btn btn-sm btn-soft" onClick={() => onClose(false)}>
+        <div className="modal-action flex justify-between w-full">
+          <button className="btn btn-outline" onClick={() => onClose(false)}>
             Cancel
           </button>
-          <button className={`btn btn-sm btn-soft btn-primary ${allChecked ? "" : "btn-disabled"}`} disabled={!allChecked} onClick={() => onAccept(true)}>
+          <button className={`btn btn-primary ${allChecked ? "" : "btn-disabled"}`} disabled={!allChecked} onClick={() => onAccept(true)}>
             Accept
           </button>
         </div>
@@ -154,40 +132,43 @@ const TermsModal = ({ isOpen, onClose, onAccept }) => {
   );
 };
 
-export const SignUp = () => {
+const AuthForm = ({ isSignUp }) => {
   const [showModal, setShowModal] = useState(false);
   const [isTermsChecked, setIsTermsChecked] = useState(false);
 
   return (
+    <>
     <AuthLayout>
-      <div className="space-y-5">
-        <h2 className="text-2xl font-bold text-center">Sign Up</h2>
-        <InputField type="email" placeholder="example.email@gmail.com" />
-        <InputField type="password" placeholder="Enter at least 8+ characters" />
-        <InputField type="password" placeholder="Confirm your password" />
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            checked={isTermsChecked}
-            onChange={() => setShowModal(true)}
-            className="checkbox mr-2 cursor-pointer"
-          />
-          <button className="text-primary underline" onClick={() => setShowModal(true)}>Agree to Terms and Conditions</button>
-        </div>
-        <AuthButton text="Sign up" disabled={!isTermsChecked} />
-        <div className="text-center">
-          <span className="text-gray-600">Already have an account? </span>
-          <Link to="/" className="text-primary">Sign in</Link>
-        </div>
+      <div className="px-2">
+        <h2 className="text-heading text-center font-extrabold">{isSignUp ? "Sign Up" : "Sign In"}</h2>
+        <InputField type="email" label="Email" placeholder="example.email@gmail.com" />
+        <InputField type="password" label="Password" placeholder="Enter at least 8+ characters" />
+        {isSignUp && <InputField type="password" label="Confirm Password" placeholder="Confirm your password" />}
+        {isSignUp ? (
+          <label className="flex items-center justify-between px-1 my-3.5">
+            <label className="fieldset-label text-primary text-details md:text-overline">
+              <input type="checkbox" checked={isTermsChecked} onChange={() => setShowModal(true)} className="checkbox mr-2 cursor-pointer" />
+              <button className="text-primary text-overline" onClick={() => setShowModal(true)}>Agree to Terms and Conditions</button>
+            </label>
+          </label>
+        ) : (
+          <div className="flex items-center justify-between px-1 my-3.5">
+            <label className="fieldset-label text-primary text-details md:text-overline">
+              <input type="checkbox" id="remember" className="checkbox checkbox-sm pb-0.5" /> Remember Me
+            </label>
+            <Link to="/forgot-password" className="text-primary text-details md:text-overline">Forgot password?</Link>
+          </div>
+        )}
+        <AuthButton text={isSignUp ? "Sign up" : "Sign in"} disabled={isSignUp && !isTermsChecked} />
+        <div className="divider text-overline">OR</div>
+        <OAuthButton text={isSignUp ? "Sign up" : "Sign in"} />
       </div>
-      <TermsModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        onAccept={() => {
-          setIsTermsChecked(true);
-          setShowModal(false);
-        }}
-      />
+      {isSignUp && <TermsModal isOpen={showModal} onClose={() => setShowModal(false)} onAccept={() => { setIsTermsChecked(true); setShowModal(false); }} />}
     </AuthLayout>
+    </>
   );
 };
+
+export const SignIn = () => <AuthForm isSignUp={false} />;
+export const SignUp = () => <AuthForm isSignUp={true} />;
+export const ForgotPassword = () => <FindPassword />;

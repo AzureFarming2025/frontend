@@ -8,57 +8,88 @@
 };
 
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "azurefarm-alpha";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97% 0 0);
+  --color-base-300: oklch(96% 0.059 95.617);
+  --color-base-content: oklch(26% 0.007 34.298);
+  --color-primary: oklch(76% 0.188 70.08);
+  --color-primary-content: oklch(96% 0.007 247.896);
+  --color-secondary: oklch(89% 0.196 126.665);
+  --color-secondary-content: oklch(44% 0.043 257.281);
+  --color-accent: oklch(71% 0.194 13.428);
+  --color-accent-content: oklch(98% 0.003 247.858);
+  --color-neutral: oklch(55% 0.013 58.071);
+  --color-neutral-content: oklch(92% 0.003 48.717);
+  --color-info: #35a6d3;
+  --color-info-content: oklch(39% 0.09 240.876);
+  --color-success: oklch(87% 0.15 154.449);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(85% 0.199 91.936);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: #ff6c89;
+  --color-error-content: oklch(39% 0.141 25.723);
+  --radius-selector: 0.25rem;
+  --radius-field: 1rem;
+  --radius-box: 2rem;
+  --size-selector: 0.1875rem;
+  --size-field: 0.21875rem;
+  --border: 1.5px;
+  --depth: 1;
+  --noise: 1;
+};
+
 @plugin 'tailwind-scrollbar-hide';
 
 @custom-variant dark (&:is(.dark *));
 @custom-variant sidebar-expanded (&:is(.sidebar-expanded *));
 
 @theme {
-  /* Primary Color Scale */
-  --color-primary-100: #E3F2FD;
-  --color-primary-200: #BBDEFB;
-  --color-primary-300: #90CAF9;
-  --color-primary-400: #64B5F6;
-  --color-primary-500: #42A5F5;
-  --color-primary-600: #2196F3;
-  --color-primary-700: #1E88E5;
-  --color-primary-800: #1976D2;
-  --color-primary-900: #1565C0;
-
-  /* Secondary Colors */
-  --color-secondary-100: #FFF3E0;
-  --color-secondary-500: #FF9800;
-  --color-secondary-900: #E65100;
-
-  /* Additional Colors */
-  --color-danger: #F44336;
-  --color-accent: #E91E63;
-  --color-success: #4CAF50;
-  --color-info: #2196F3;
-
-  /* Grayscale */
-  --color-gray-100: #F5F5F5;
-  --color-gray-200: #EEEEEE;
-  --color-gray-300: #E0E0E0;
-  --color-gray-400: #BDBDBD;
-  --color-gray-500: #9E9E9E;
-  --color-gray-600: #757575;
-  --color-gray-700: #616161;
-  --color-gray-800: #424242;
-  --color-gray-900: #212121;
-
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97% 0 0);
+  --color-base-300: oklch(96% 0.059 95.617);
+  --color-base-content: oklch(26% 0.007 34.298);
+  --color-primary: oklch(76% 0.188 70.08);
+  --color-primary-content: oklch(96% 0.007 247.896);
+  --color-secondary: oklch(89% 0.196 126.665);
+  --color-secondary-content: oklch(44% 0.043 257.281);
+  --color-accent: oklch(71% 0.194 13.428);
+  --color-accent-content: oklch(98% 0.003 247.858);
+  --color-neutral: oklch(55% 0.013 58.071);
+  --color-neutral-content: oklch(92% 0.003 48.717);
+  --color-info: #35a6d3;
+  --color-info-content: oklch(39% 0.09 240.876);
+  --color-success: oklch(87% 0.15 154.449);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(85% 0.199 91.936);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: #ff6c89;
+  --color-error-content: oklch(39% 0.141 25.723);
+  --radius-selector: 0.25rem;
+  --radius-field: 1rem;
+  --radius-box: 2rem;
+  --size-selector: 0.1875rem;
+  --size-field: 0.21875rem;
+  --border: 1.5px;
+  --depth: 1;
+  --noise: 1;
   /* 폰트 설정 */
   --font-primary: "Pretendard", sans-serif;
   --font-secondary: "Roboto", sans-serif;
 
   /* 타이포그래피 */
   --text-title: 2rem;
-  --text-heading: 1.75rem;
-  --text-subheading: 1.5rem;
-  --text-body: 1rem;
-  --text-link: 1rem;
-  --text-caption: 0.875rem;
-  --text-overline: 0.75rem;
+  --text-heading: 1.5rem;
+  --text-subheading: 1.2rem;
+  --text-body: 0.95rem;
+  --text-link: 0.9rem;
+  --text-caption: 0.8rem;
+  --text-overline: 0.78rem;
+  --text-details:0.7rem;
   
   /* Radius */
   --radius-none: 0px;
