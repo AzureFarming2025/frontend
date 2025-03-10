@@ -6,7 +6,7 @@ export const sendDeviceData = async (deviceId: number, data: any) => {
     }).then((res) => res.json());
   };
   
-  export const sendDeviceCommand = async (deviceId: number, command: string) => {
+export const sendDeviceCommand = async (deviceId: number, command: string) => {
     return fetch(`/api/device/${deviceId}/command`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

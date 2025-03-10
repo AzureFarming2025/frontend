@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
-import Sidebar from '../partials/sidebar/Sidebar';
-import Header from '../partials/Header';
-import FilterButton from '../components/DropdownFilter';
-import Datepicker from '../components/Datepicker';
-import Banner from '../partials/Banner';
-import ActivityLogCard from '../components/ActivityLogCard'; // 활동 로그 카드 컴포넌트
+import Sidebar from '@components/partials/Sidebar';
+import Header from '@components/partials/Header';
+import FilterButton from '@components/DropdownFilter';
+import Datepicker from '@components/Datepicker';
+import Banner from '@components/partials/Banner';
+import ActivityLogCard from '@components/ActivityLogCard'; // 활동 로그 카드 컴포넌트
 import { MdTimeline, MdEmojiEvents, MdHistory } from "react-icons/md";
 
 export default function Activities() {

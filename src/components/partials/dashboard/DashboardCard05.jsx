@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Tooltip from '../../components/Tooltip';
-import { chartAreaGradient } from '../../charts/ChartjsConfig';
-import RealtimeChart from '../../charts/RealtimeChart';
+import Tooltip from '@components/Tooltip';
+import { chartAreaGradient } from '@components/charts/ChartjsConfig';
+import RealtimeChart from '@components/charts/RealtimeChart';
 
 // Import utilities
-import { adjustColorOpacity, getCssVariable } from '../../utils/Utils';
+import { adjustColorOpacity, getCssVariable } from '@utils/Utils';
 
 function DashboardCard05() {
 

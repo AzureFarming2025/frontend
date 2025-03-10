@@ -21,89 +21,7 @@ import DashboardCard12 from '@components/partials/dashboard/DashboardCard12';
 import DashboardCard13 from '@components/partials/dashboard/DashboardCard13';
 import Banner from '@components/partials/Banner';
 
-import Avatar from "@components/Avatar";
-import QuickStart from "@components/QuickStart";
-// import Carousel from "@/components/Carousel";
-
-// ✅ 임시 더미 데이터 (API 호출 없이 테스트 가능)
-const dummyDashboard = {
-  username: "TestUser",
-  achievements: 5,
-  medals: 3,
-  upcomingTasks: [
-    { title: "Water your plants", date: "Feb 20, 2025" },
-    { title: "Harvest tomatoes", date: "Feb 21, 2025" },
-  ],
-  advice: "Remember to check soil moisture before watering! 🌱",
-};
-
-const dummyPlants = [
-  { id: 1, name: "Tomato", status: "Healthy", image: "https://via.placeholder.com/64" },
-  { id: 2, name: "Lettuce", status: "Needs Water", image: "https://via.placeholder.com/64" },
-  { id: 3, name: "Basil", status: "Growing", image: "https://via.placeholder.com/64" },
-];
-
-// const Home = () => {
-//   const [dashboardData] = useState(dummyDashboard);
-//   const [plants] = useState(dummyPlants);
-
-//   return (
-//     <div className="w-full flex flex-col gap-6 p-6">
-//       {/* 상단 고정 패널 - 사용자 정보 */}
-//       <div className="bg-white shadow-md rounded-lg p-4 flex items-center justify-between">
-//         <div>
-//           <h2 className="text-lg font-semibold">Welcome, {dashboardData.username}!</h2>
-//           <p className="text-gray-500">Achievements: {dashboardData.achievements}</p>
-//         </div>
-//         <div className="flex items-center gap-4">
-//           <span className="text-gray-700">Medals: {dashboardData.medals}</span>
-//           <Avatar userId={1} />
-//         </div>
-//       </div>
-
-//       {/* 캐러셀 - 사용자의 작물 상태 */}
-//       <Carousel plants={plants} />
-
-//       {/* 퀵스타트 버튼 */}
-//       <QuickStart />
-
-//       {/* 일정 목록 */}
-//       <div className="bg-white shadow-md rounded-lg p-4">
-//         <h3 className="text-md font-semibold">Upcoming Tasks</h3>
-//         <ul className="mt-2">
-//           {dashboardData.upcomingTasks.length > 0 ? (
-//             dashboardData.upcomingTasks.map((task, index) => (
-//               <li key={index} className="py-2 border-b last:border-none">
-//                 {task.title} - <span className="text-gray-500">{task.date}</span>
-//               </li>
-//             ))
-//           ) : (
-//             <p className="text-gray-500">No upcoming tasks</p>
-//           )}
-//         </ul>
-//       </div>
-
-//       {/* 광고용 배너 */}
-//       <div className="w-full bg-gray-300 h-28 flex items-center justify-center rounded-lg shadow-md">
-//         <p className="text-gray-700">📢 Promotional Banner Placeholder</p>
-//       </div>
-
-//       {/* 창고 정보 (미정) */}
-//       <div className="bg-white shadow-md rounded-lg p-4">
-//         <h3 className="text-md font-semibold">Warehouse Info</h3>
-//         <p className="text-gray-500">Coming soon...</p>
-//       </div>
-
-//       {/* 봇 대화형 어드바이스 */}
-//       <div className="flex items-center gap-3 p-4 bg-blue-100 border border-blue-300 rounded-lg shadow">
-//         <span className="text-blue-500">🤖</span>
-//         <p className="text-blue-700">{dashboardData.advice}</p>
-//       </div>
-//     </div>
-//   );
-// };
-
-function Dashboard() {
+function Templates() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // const { fetchProfile, fetchDashboard } = useUserStore();
@@ -196,15 +114,6 @@ function Dashboard() {
       </div>
     </div>
   );
-  // return (
-  //   <>
-  //   <div className="flex h-screen overflow-hidden">
-  //      {/* Sidebar */}
-  //      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-  //      <Home />
-  //   </div>
-  //   </>
-  // );
 }
 
-export default Dashboard;
+export default Templates;

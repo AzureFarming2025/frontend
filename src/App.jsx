@@ -7,7 +7,7 @@ import {
 
 import './css/style.css';
 
-import './charts/ChartjsConfig';
+import '@components/charts/ChartjsConfig';
 
 // Import pages
 import Dashboard from './pages/Dashboard';
@@ -16,7 +16,7 @@ import Profile from "./pages/Profile";
 import About from "./pages/About";
 import Details from './pages/Details';
 import { SignIn, SignUp, ForgotPassword } from './pages/Auth';
-
+import Templates from './pages/Templates';
 
 function App() {
 
@@ -29,7 +29,7 @@ function App() {
   }, [location.pathname]); // triggered on route change
 
   return (
-    <>
+    <div className='page-transition'>
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
@@ -39,8 +39,9 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<About />} />
         <Route path="/details" element={<Details />} />
+        <Route path="/templates" element={<Templates />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

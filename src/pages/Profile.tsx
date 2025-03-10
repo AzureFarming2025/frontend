@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Button from "../components/Button";
-import Sidebar from '../partials/sidebar/Sidebar';
+import Button from "@components/Button";
+import Sidebar from '@components/partials/Sidebar';
 
 const Profile = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);

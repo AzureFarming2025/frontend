@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useThemeProvider } from '../utils/ThemeContext';
+import { useThemeProvider } from '@utils/ThemeContext';
 
 import { chartColors } from './ChartjsConfig';
 import {
@@ -8,11 +8,11 @@ import {
 import 'chartjs-adapter-moment';
 
 // Import utilities
-import { formatValue } from '../utils/Utils';
+import { formatThousands } from '@utils/Utils';
 
 Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend);
 
-function BarChart02({
+function BarChart03({
   data,
   width,
   height
@@ -20,6 +20,7 @@ function BarChart02({
 
   const [chart, setChart] = useState(null)
   const canvas = useRef(null);
+  const legend = useRef(null);
   const { currentTheme } = useThemeProvider();
   const darkMode = currentTheme === 'dark';
   const { textColor, gridColor, tooltipBodyColor, tooltipBgColor, tooltipBorderColor } = chartColors; 
@@ -48,7 +49,7 @@ function BarChart02({
             beginAtZero: true,
             ticks: {
               maxTicksLimit: 5,
-              callback: (value) => formatValue(value),
+              callback: (value) => formatThousands(value),
               color: darkMode ? textColor.dark : textColor.light,
             },
             grid: {
@@ -62,7 +63,7 @@ function BarChart02({
               parser: 'MM-DD-YYYY',
               unit: 'month',
               displayFormats: {
-                month: 'MMM YY',
+                month: 'MMM',
               },
             },
             border: {
@@ -85,7 +86,7 @@ function BarChart02({
           tooltip: {
             callbacks: {
               title: () => false, // Disable tooltip title
-              label: (context) => formatValue(context.parsed.y),
+              label: (context) => formatThousands(context.parsed.y),
             },
             bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
             backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
@@ -97,15 +98,61 @@ function BarChart02({
           mode: 'nearest',
         },
         animation: {
-          duration: 200,
+          duration: 500,
         },
         maintainAspectRatio: false,
         resizeDelay: 200,
       },
+      plugins: [{
+        id: 'htmlLegend',
+        afterUpdate(c, args, options) {
+          const ul = legend.current
+          if (!ul) return
+          // Remove old legend items
+          while (ul.firstChild) {
+            ul.firstChild.remove()
+          }
+          // Reuse the built-in legendItems generator
+          const items = c.options.plugins.legend.labels.generateLabels(c)
+          items.forEach((item) => {
+            const li = document.createElement('li')
+            // Button element
+            const button = document.createElement('button')
+            button.style.display = 'inline-flex';
+            button.style.alignItems = 'center';
+            button.style.opacity = item.hidden ? '.3' : '';
+            button.onclick = () => {
+              c.setDatasetVisibility(item.datasetIndex, !c.isDatasetVisible(item.datasetIndex))
+              c.update()
+            };
+            // Color box
+            const box = document.createElement('span')
+            box.style.display = 'block';
+            box.style.width = '12px';
+            box.style.height = '12px';
+            box.style.borderRadius = 'calc(infinity * 1px)';
+            box.style.marginRight = '8px';
+            box.style.borderWidth = '3px';
+            box.style.borderColor = item.fillStyle;
+            box.style.pointerEvents = 'none';
+            // Label
+            const label = document.createElement('span')
+            label.classList.add('text-gray-500', 'dark:text-gray-400');
+            label.style.fontSize = '14px';
+            label.style.lineHeight = 'calc(1.25 / 0.875)';
+            const labelText = document.createTextNode(item.text)
+            label.appendChild(labelText)
+            li.appendChild(button)
+            button.appendChild(box)
+            button.appendChild(label)
+            ul.appendChild(li)
+          })
+        },
+      }],
     });
     setChart(newChart);
     return () => newChart.destroy();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -130,8 +177,17 @@ function BarChart02({
   }, [currentTheme]);
 
   return (
-    <canvas ref={canvas} width={width} height={height}></canvas>
+    <React.Fragment>
+      <div className="px-5 py-4">
+        <div className="grow mb-1">
+          <ul ref={legend} className="flex flex-wrap gap-x-4"></ul>
+        </div>
+      </div>
+      <div className="grow">
+        <canvas ref={canvas} width={width} height={height}></canvas>
+      </div>      
+    </React.Fragment>
   );
 }
 
-export default BarChart02;
+export default BarChart03;

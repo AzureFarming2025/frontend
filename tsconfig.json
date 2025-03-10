@@ -8,7 +8,10 @@
       "paths": {
         "@api/*": ["api/*"],
         "@components/*": ["components/*"],
-        "@pages/*": ["pages/*"]
+        "@assets/*": ["assets/*"],
+        "@config/*": ["config/*"],
+        "@pages/*": ["pages/*"],
+        "@utils/*": ["utils/*"],
       },
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Avatar from "../components/Avatar";
-import Button from "../components/Button";
+import Avatar from "@components/Avatar";
+import Button from "@components/Button";
 
 // ✅ 임시 더미 데이터 (API 연결 없이 테스트)
 const dummyPlantDetails = {

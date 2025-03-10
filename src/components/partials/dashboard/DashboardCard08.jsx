@@ -1,9 +1,9 @@
 import React from 'react';
-import { chartAreaGradient } from '../../charts/ChartjsConfig';
-import LineChart from '../../charts/LineChart02';
+import { chartAreaGradient } from '@components/charts/ChartjsConfig';
+import LineChart from '@components/charts/LineChart02';
 
 // Import utilities
-import { getCssVariable } from '../../utils/Utils';
+import { getCssVariable } from '@utils/Utils';
 
 function DashboardCard08() {
 

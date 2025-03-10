@@ -1,9 +1,9 @@
 import React from 'react';
-import Tooltip from '../../components/Tooltip';
-import BarChart from '../../charts/BarChart02';
+import Tooltip from '@components/Tooltip';
+import BarChart from '@components/charts/BarChart02';
 
 // Import utilities
-import { getCssVariable } from '../../utils/Utils';
+import { getCssVariable } from '@utils/Utils';
 
 function DashboardCard09() {
 

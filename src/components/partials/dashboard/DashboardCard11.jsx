@@ -1,8 +1,8 @@
 import React from 'react';
-import BarChart from '../../charts/BarChart03';
+import BarChart from '@components/charts/BarChart03';
 
 // Import utilities
-import { getCssVariable } from '../../utils/Utils';
+import { getCssVariable } from '@utils/Utils';
 
 function DashboardCard11() {
 

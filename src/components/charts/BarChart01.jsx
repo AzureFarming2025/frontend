@@ -1,18 +1,18 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useThemeProvider } from '../utils/ThemeContext';
+import { useThemeProvider } from '@utils/ThemeContext';
 
 import { chartColors } from './ChartjsConfig';
 import {
-  Chart, LineController, LineElement, Filler, PointElement, LinearScale, TimeScale, Tooltip,
+  Chart, BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend,
 } from 'chart.js';
 import 'chartjs-adapter-moment';
 
 // Import utilities
-import { formatValue } from '../utils/Utils';
+import { formatValue } from '@utils/Utils';
 
-Chart.register(LineController, LineElement, Filler, PointElement, LinearScale, TimeScale, Tooltip);
+Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend);
 
-function LineChart02({
+function BarChart01({
   data,
   width,
   height
@@ -23,24 +23,28 @@ function LineChart02({
   const legend = useRef(null);
   const { currentTheme } = useThemeProvider();
   const darkMode = currentTheme === 'dark';
-  const { textColor, gridColor, tooltipBodyColor, tooltipBgColor, tooltipBorderColor } = chartColors;  
+  const { textColor, gridColor, tooltipBodyColor, tooltipBgColor, tooltipBorderColor } = chartColors;
 
   useEffect(() => {
     const ctx = canvas.current;
     // eslint-disable-next-line no-unused-vars
     const newChart = new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
       data: data,
       options: {
         layout: {
-          padding: 20,
+          padding: {
+            top: 12,
+            bottom: 16,
+            left: 20,
+            right: 20,
+          },
         },
         scales: {
           y: {
             border: {
               display: false,
             },
-            beginAtZero: true,
             ticks: {
               maxTicksLimit: 5,
               callback: (value) => formatValue(value),
@@ -66,8 +70,6 @@ function LineChart02({
               display: false,
             },
             ticks: {
-              autoSkipPadding: 48,
-              maxRotation: 0,
               color: darkMode ? textColor.dark : textColor.light,
             },
           },
@@ -90,6 +92,9 @@ function LineChart02({
           intersect: false,
           mode: 'nearest',
         },
+        animation: {
+          duration: 500,
+        },
         maintainAspectRatio: false,
         resizeDelay: 200,
       },
@@ -105,7 +110,7 @@ function LineChart02({
             }
             // Reuse the built-in legendItems generator
             const items = c.options.plugins.legend.labels.generateLabels(c);
-            items.slice(0, 2).forEach((item) => {
+            items.forEach((item) => {
               const li = document.createElement('li');
               // Button element
               const button = document.createElement('button');
@@ -124,18 +129,33 @@ function LineChart02({
               box.style.borderRadius = 'calc(infinity * 1px)';
               box.style.marginRight = '8px';
               box.style.borderWidth = '3px';
-              box.style.borderColor = c.data.datasets[item.datasetIndex].borderColor;
+              box.style.borderColor = item.fillStyle;
               box.style.pointerEvents = 'none';
               // Label
+              const labelContainer = document.createElement('span');
+              labelContainer.style.display = 'flex';
+              labelContainer.style.alignItems = 'center';
+              const value = document.createElement('span');
+              value.classList.add('text-gray-800', 'dark:text-gray-100');
+              value.style.fontSize = '30px';
+              value.style.lineHeight = 'calc(2.25 / 1.875)';
+              value.style.fontWeight = '700';
+              value.style.marginRight = '8px';
+              value.style.pointerEvents = 'none';
               const label = document.createElement('span');
               label.classList.add('text-gray-500', 'dark:text-gray-400');
               label.style.fontSize = '14px';
               label.style.lineHeight = 'calc(1.25 / 0.875)';
+              const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0);
+              const valueText = document.createTextNode(formatValue(theValue));
               const labelText = document.createTextNode(item.text);
+              value.appendChild(valueText);
               label.appendChild(labelText);
               li.appendChild(button);
               button.appendChild(box);
-              button.appendChild(label);
+              button.appendChild(labelContainer);
+              labelContainer.appendChild(value);
+              labelContainer.appendChild(label);
               ul.appendChild(li);
             });
           },
@@ -144,7 +164,7 @@ function LineChart02({
     });
     setChart(newChart);
     return () => newChart.destroy();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -171,17 +191,8 @@ function LineChart02({
   return (
     <React.Fragment>
       <div className="px-5 py-3">
-        <div className="flex flex-wrap justify-between items-end gap-y-2 gap-x-4">
-          <div className="flex items-start">
-            <div className="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2">$1,482</div>
-            <div className="text-sm font-medium text-red-700 px-1.5 bg-red-500/20 rounded-full">-22%</div>
-          </div>
-          <div className="grow mb-1">
-            <ul ref={legend} className="flex flex-wrap gap-x-4 sm:justify-end"></ul>
-          </div>
-        </div>
+        <ul ref={legend} className="flex flex-wrap gap-x-4"></ul>
       </div>
-      {/* Chart built with Chart.js 3 */}
       <div className="grow">
         <canvas ref={canvas} width={width} height={height}></canvas>
       </div>
@@ -189,4 +200,4 @@ function LineChart02({
   );
 }
 
-export default LineChart02;
+export default BarChart01;
