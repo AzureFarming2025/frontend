@@ -1,0 +1,137 @@
+/* Typography */
+.text {
+    font-family: 'Poppins', sans-serif;
+}
+/* 🔹 Smallest Text (Metadata, Labels, Tooltips) */
+.text-caption {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t1);
+    line-height: var(--line-height-t1);
+    font-weight: 400;
+    color: var(--color-gray-500);
+}
+
+.text-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t2);
+    line-height: var(--line-height-t1);
+    font-weight: 400;
+    color: var(--color-gray-500);
+}
+
+/* 🔹 Overline Text (Tiny uppercase labels, dividers) */
+.text-overline {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: var(--font-t2);
+    line-height: var(--line-height-t2);
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-gray-600);
+}
+
+/* 🔹 Detail Text (Additional Info, Notes) */
+.text-details {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: var(--font-t3);
+    line-height: var(--line-height-t3);
+    font-weight: 400;
+    color: var(--color-gray-500);
+}
+
+/* 🔹 Link Text */
+.text-link-sm {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t2);
+    line-height: var(--line-height-t1);
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.text-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t2);
+    line-height: var(--line-height-t3);
+    font-weight: 500;
+    color: var(--color-primary);
+}
+
+.text-link-caption {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t2);
+    line-height: var(--line-height-t3);
+    font-weight: 400;
+    color: var(--color-gray-500);
+}
+
+/* 🔹 Standard Body Text */
+.text-body {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: var(--font-t4);
+    line-height: var(--line-height-t4);
+    font-weight: 700;
+    color: var(--color-gray-800);
+}
+
+/* 🔹 Secondary Body Text */
+.text-body-secondary {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: var(--font-t5);
+    line-height: var(--line-height-t5);
+    font-weight: 400;
+    color: var(--color-gray-700);
+}
+
+/* 🔹 Subheading (Medium Emphasis) */
+.text-subheading {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t6);
+    line-height: var(--line-height-t6);
+    font-weight: 500;
+    color: var(--color-gray-900);
+}
+
+/* 🔹 Section Heading */
+.text-heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t7);
+    line-height: var(--line-height-t7);
+    font-weight: 600;
+    color: var(--color-gray-900);
+}
+
+/* 🔹 Page Title */
+.text-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t8);
+    line-height: var(--line-height-t8);
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+/* 🔹 Hero Section Title */
+.text-hero {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t9);
+    line-height: var(--line-height-t9);
+    font-weight: 800;
+    color: var(--color-gray-900);
+}
+
+/* 🔹 Large Display Text */
+.text-display {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t10);
+    line-height: var(--line-height-t10);
+    font-weight: 900;
+    color: var(--color-gray-900);
+}
+
+/* 🔹 Extra Large Display Text */
+.text-display-xl {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-t11);
+    line-height: var(--line-height-t11);
+    font-weight: 900;
+    color: var(--color-gray-900);
+}
+

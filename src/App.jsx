@@ -32,7 +32,7 @@ function App() {
     <div className='page-transition'>
       <Routes>
         <Route path="/" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/activities" element={<Activities />} />
