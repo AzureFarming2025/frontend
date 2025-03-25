@@ -7,12 +7,16 @@ import {
 } from "react-icons/md";
 import { sidebarConfig } from "@config/sidebarConfig";
 
+// NOTE: Collapse animation is currently broken on large screens.
+// It used to work smoothly in commit `725507d0e94d31e1beef229adf141e4cc7ce5381` (e.g., transition between expanded/collapsed).
+// Likely regressed during layout/width refactor.
+// Consider reverting relevant changes from that commit or debugging transition logic after final layout stabilizes.
+
 const Sidebar = ({ sidebarExpanded, setSidebarExpanded }) => {
   const location = useLocation();
   const { pathname, hash } = location;
   const sidebarRef = useRef(null);
-  const navigate = useNavigate();
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024);
+  const isMobile = window.innerWidth < 1024;
 
   const [openTabs, setOpenTabs] = useState(() => {
     try {
@@ -24,9 +28,8 @@ const Sidebar = ({ sidebarExpanded, setSidebarExpanded }) => {
   useEffect(() => {
     if (!isMobile) {
       localStorage.setItem("sidebar-expanded", JSON.stringify(sidebarExpanded));
-      setSidebarExpanded(true);
     }
-  }, [sidebarExpanded, isMobile]);
+  }, [isMobile]);
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "auto";
     window.scroll({ top: 0 });
@@ -73,45 +76,49 @@ const Sidebar = ({ sidebarExpanded, setSidebarExpanded }) => {
     };
     scrollToHash();
   }, [hash]);
+
   const toggleDropdown = useCallback((menu) => {
     setOpenTabs((prev) => ({ ...prev, [menu]: !prev[menu] }));
   }, []);
+
   return (
-    <div>
-      <aside
-        ref={sidebarRef}
-        className={`h-screen z-50 transition-all
-          ${
-            sidebarExpanded
-              ? "md:fixed md:left-0 md:top-0 md:translate-x-64 md:w-20"
-              : "md:fixed md:left-0 md:top-0 md:-translate-x-0 md:w-64 md:overflow-hidden"
-          }
-          `}
-      >
-        <div className="bg-white dark:bg-gray-800 shadow-md px-4 pb-10 h-full flex flex-col justify-between">
-          {/* Desktop logo */}
-          <div className="h-[4rem] flex items-center justify-between mb-10 p-2 bg-white md:flex-col">
-            <div className="h-[4rem] flex items-center">
-              <img src="/logo.svg" alt="Pomo" className="w-10 h-10" />
-              {sidebarExpanded && (
-                <span className="ml-2 text-2xl">Logo Title</span>
-              )}
-            </div>
-            {/* Collapse button */}
-            <SidebarToggle
-              sidebarExpanded={sidebarExpanded}
-              setSidebarExpanded={setSidebarExpanded}
-            />
+    <aside
+      ref={sidebarRef}
+      className={`overflow-hidden
+        h-screen flex-1
+        fixed top-0 left-0 z-50 bg-white dark:bg-gray-800 shadow-lg
+        transition-[width,transform] duration-300 ease-in-out
+        overflow-hidden
+        md:relative
+        w-80
+        ${
+          sidebarExpanded
+            ? "px-4 md:w-64 md:translate-x-0"
+            : "px-2 md:w-20 md:-translate-x-0"
+        }`}
+    >
+      <div className="flex-1 flex flex-col h-full pb-10 justify-between">
+        {/* Desktop logo */}
+        <div className="h-16 flex items-center justify-between mb-10 p-2 bg-white md:flex-row">
+          <div className="h-16 flex items-center">
+            <img src="/logo.svg" alt="Pomo" className="w-10 h-10" />
+            {sidebarExpanded && (
+              <span className="ml-2 text-2xl">Logo Title</span>
+            )}
           </div>
-          <SidebarNav
+          <SidebarToggle
             sidebarExpanded={sidebarExpanded}
-            openTabs={openTabs}
-            toggleDropdown={toggleDropdown}
+            setSidebarExpanded={setSidebarExpanded}
           />
-          <SidebarFooter />
         </div>
-      </aside>
-    </div>
+        <SidebarNav
+          sidebarExpanded={sidebarExpanded}
+          openTabs={openTabs}
+          toggleDropdown={toggleDropdown}
+        />
+        <SidebarFooter />
+      </div>
+    </aside>
   );
 };
 
@@ -122,7 +129,7 @@ const SidebarNav = ({ sidebarExpanded, openTabs, toggleDropdown }) => {
   const fullPath = `${pathname}${hash}`;
 
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4 menu w-full">
       {/* Navigation section */}
       <SidebarSection label="Navigation" sidebarExpanded={sidebarExpanded}>
         <ul className="space-y-2">
@@ -214,21 +221,20 @@ const SidebarNavItem = ({
 }) => {
   return (
     <div
-      className={`flex items-center justify-between w-full p-3 py-2.5 rounded-full cursor-pointer transition-all duration-300
-      ${isActive && !isSubMenu ? "bg-primary text-white" : ""} 
+      className={`flex items-center justify-between w-full p-4 py-3 rounded-xl cursor-pointer transition-all duration-300
+      ${isActive && !isSubMenu ? "btn btn-lg btn-primary text-white" : ""} 
       ${
         isSubMenu && isActive
           ? "text-primary font-semibold"
           : "text-gray-800 dark:text-gray-100"
       }
       ${isDropdownActive && !isActive ? "bg-transparent" : ""}
-      ${isSubMenu ? "ml-8 text-sm" : "text-label"}
-      `}
+      ${isSubMenu ? "ml-4 text-sm" : "text-label"}`}
       onClick={onClick}
     >
       <div className="flex items-center">
         {icon && (
-          <span className={`mr-3 ${sidebarExpanded ? "" : "text-label"}`}>
+          <span className={`${sidebarExpanded ? "mr-3" : "text-label"}`}>
             {icon}
           </span>
         )}
@@ -247,7 +253,7 @@ const SidebarNavItem = ({
             e.stopPropagation();
             toggleAction();
           }}
-          className="px-2 transition-transform duration-300"
+          className="transition-color duration-300"
         >
           <MdKeyboardArrowDown
             className={`${
@@ -304,8 +310,8 @@ const SidebarLinkGroup = React.memo(
 
 // ✅ SidebarFooter - Upgrade button
 const SidebarFooter = () => (
-  <div className="mt-auto p-2">
-    <button className="w-full bg-green-100 text-green-700 p-1.5 rounded-md text-sm font-medium flex items-center justify-center">
+  <div className="mt-auto">
+    <button className="btn btn-block btn-soft btn-secondary">
       Upgrade to Pro
     </button>
   </div>

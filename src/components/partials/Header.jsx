@@ -7,7 +7,7 @@ import { MdMenu } from "react-icons/md";
 
 const Header = ({ sidebarExpanded, setSidebarExpanded }) => {
   return (
-    <header className="h-[4rem] p-5 flex items-center justify-between bg-black">
+    <header className="h-16 p-5 flex items-center justify-between bg-base-100">
       {/* Left: Sidebar toggle */}
       <div className="flex items-center gap-4">
         {sidebarExpanded !== undefined && (

@@ -22,7 +22,7 @@
   --size-field: 0.21875rem;
   --border: 1.5px;
   --depth: 1;
-  --noise: 1;
+  /* --noise: 1; */
 };
 
 @plugin 'tailwind-scrollbar-hide';
