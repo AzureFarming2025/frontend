@@ -1,8 +1,8 @@
 // import SearchModal from "@components/ModalSearch";
-import Notifications from "@components/DropdownNotifications";
-import Help from "@components/DropdownHelp";
-import UserMenu from "@components/DropdownProfile";
-import ThemeToggle from "@components/ThemeToggle";
+import Notifications from "@components/selector/DropdownNotifications";
+import Help from "@components/selector/DropdownHelp";
+import UserMenu from "@components/selector/DropdownProfile";
+import ThemeToggle from "@components/ui/ThemeToggle";
 import { MdMenu } from "react-icons/md";
 
 const Header = ({ sidebarExpanded, setSidebarExpanded }) => {

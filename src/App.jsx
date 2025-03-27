@@ -87,6 +87,7 @@ function App() {
 
         {/* Standalone pages */}
         <Route path="/details" element={<Details />} />
+        <Route path="/details/:id" element={<Details />} />
         <Route path="/templates" element={<Templates />} />
       </Routes>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import termsConfig from "@config/termsConfig";
-import { SolidButton, OutlineButton } from "@components/input/Buttons";
+import { SolidButton, OutlineButton } from "@components/selector/Buttons";
 import { FaCheckCircle, FaRegCircle } from "react-icons/fa";
 
 const TermsModal = ({ isOpen, onClose, onAccept }) => {

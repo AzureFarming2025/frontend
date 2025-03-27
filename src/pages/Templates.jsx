@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 
 import Sidebar from "@components/partials/Sidebar";
 import Header from "@components/partials/Header";
-import FilterButton from "@components/DropdownFilter";
-import Datepicker from "@components/Datepicker";
+import FilterButton from "@components/selector/DropdownFilter";
+import Datepicker from "@components/ui/Datepicker";
 import DashboardCard01 from "@components/partials/dashboard/DashboardCard01";
 import DashboardCard02 from "@components/partials/dashboard/DashboardCard02";
 import DashboardCard03 from "@components/partials/dashboard/DashboardCard03";

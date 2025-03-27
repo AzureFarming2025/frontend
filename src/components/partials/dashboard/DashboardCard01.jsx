@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LineChart from '@components/charts/LineChart01';
 import { chartAreaGradient } from '@components/charts/ChartjsConfig';
-import EditMenu from '@components/DropdownEditMenu';
+import EditMenu from '@components/selector/DropdownEditMenu';
 
 // Import utilities
 import { adjustColorOpacity, getCssVariable } from '@utils/Utils';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Tooltip from '@components/Tooltip';
+import Tooltip from '@components/box/Tooltip';
 import BarChart from '@components/charts/BarChart02';
 
 // Import utilities

@@ -1,6 +1,7 @@
 import React from "react";
 import { IoPowerSharp } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const UserHeader = () => (
   <div className="flex justify-between items-center">
@@ -17,23 +18,34 @@ const StatCard = ({ title, value, color, icon }) => (
   </div>
 );
 
-const PlantCard = ({ imgSrc, title, label }) => (
-  <div className="carousel-item w-52 flex-shrink-0">
-    <div className="bg-white rounded-2xl shadow p-3 relative w-full">
-      <img
-        src={imgSrc}
-        alt="plant"
-        className="rounded-xl object-cover h-40 w-full"
-      />
-      <div className="mt-2 font-bold">{title}</div>
-      {label && (
-        <div className="flex items-center gap-2 text-sm text-green-600">
-          <FaCheckCircle /> <span>{label}</span>
-        </div>
-      )}
+const PlantCard = ({ id, imgSrc, title, label }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/details/${id}`);
+  };
+
+  return (
+    <div
+      className="carousel-item w-52 flex-shrink-0 cursor-pointer"
+      onClick={handleCardClick}
+    >
+      <div className="bg-white rounded-2xl shadow p-3 relative w-full">
+        <img
+          src={imgSrc}
+          alt="plant"
+          className="rounded-xl object-cover h-40 w-full"
+        />
+        <div className="mt-2 font-bold">{title}</div>
+        {label && (
+          <div className="flex items-center gap-2 text-sm text-green-600">
+            <FaCheckCircle /> <span>{label}</span>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const TagCheckbox = ({ label, checked, color = "success" }) => (
   <label
@@ -103,11 +115,13 @@ export default function Dashboard() {
           <h2 className="text-lg font-semibold mb-4">My Gardenings</h2>
           <div className="carousel carousel-center space-x-4 p-2 bg-base-100 rounded-box">
             <PlantCard
+              id={1}
               imgSrc="https://www.houseplantsexpert.com/image-files/monstera-deliciosa.jpg"
               title="Blog title"
               label="Label 1"
             />
             <PlantCard
+              id={2}
               imgSrc="https://cdn.shopify.com/s/files/1/0150/6262/products/CalatheaMedallion6_1024x1024.jpg"
               title="Blog title"
             />

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import FilterButton from "@components/DropdownFilter";
-import Datepicker from "@components/Datepicker";
+import FilterButton from "@components/selector/DropdownFilter";
+import Datepicker from "@components/ui/Datepicker";
 import Banner from "@components/partials/Banner";
 import ActivityLogCard from "@components/ActivityLogCard"; // 활동 로그 카드 컴포넌트
 import { MdTimeline, MdEmojiEvents, MdHistory } from "react-icons/md";
@@ -15,21 +15,21 @@ export default function Activities() {
       type: "watering",
       description: "Watered 'Tomato Plant'",
       timestamp: "2025-02-16 10:30",
-      icon: <MdHistory size={24} />,
+      icon: MdHistory, // 컴포넌트 타입으로 전달
     },
     {
       id: 2,
       type: "harvest",
       description: "Harvested 'Basil'",
       timestamp: "2025-02-15 14:15",
-      icon: <MdEmojiEvents size={24} />,
+      icon: MdEmojiEvents, // 컴포넌트 타입으로 전달
     },
     {
       id: 3,
       type: "new-plant",
       description: "Started growing 'Mint'",
       timestamp: "2025-02-14 09:45",
-      icon: <MdTimeline size={24} />,
+      icon: MdTimeline, // 컴포넌트 타입으로 전달
     },
   ];
 
@@ -75,22 +75,7 @@ export default function Activities() {
             >
               Scroll to Logs
             </button>
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
-            <div className="w-20 h-20 bg-secondary" />
+
             {/* Logs Section */}
             <div
               id="logs"

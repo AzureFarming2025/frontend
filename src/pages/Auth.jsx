@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { OutlineButton, SolidButton } from "@components/input/Buttons";
-import { AuthTextInput } from "@components/input/TextInputs";
+import { OutlineButton, SolidButton } from "@components/selector/Buttons";
+import { AuthTextInput } from "@components/selector/TextInputs";
 import TermsModal from "@components/partials/TermsModal";
 import { FaGoogle } from "react-icons/fa";
 
