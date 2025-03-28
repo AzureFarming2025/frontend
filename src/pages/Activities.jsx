@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Modal, Stats, Button, Tooltip } from "react-daisyui";
+import { Modal, Stats, Button, Tooltip, Avatar } from "react-daisyui";
+import Title from "@components/field/Title";
 
 const tabList = [
   "Timeline",
@@ -12,7 +13,7 @@ const tabList = [
 export default function Activities() {
   return (
     <div className="p-6 space-y-12">
-      <h1 className="text-2xl font-bold mb-6">Activities Overview</h1>
+      <Title text="Activities"/>
       <div className="grid grid-cols-3 gap-8">
         <section className="col-span-full">
           <AchievementsSection />

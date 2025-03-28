@@ -27,9 +27,9 @@ const AuthForm = ({ isSignUp }) => {
   return (
     <>
       <AuthLayout>
-        <div className="w-full space-y-4 flex flex-col">
+        <div className="w-full space-y-4 flex flex-col h-full">
           {/* Sign In / Sign Up Toggle */}
-          <div className="flex justify-end items-center -mt-8 mb-12">
+          <div className="flex justify-end items-center -mt-8 mb-12 h-1/5">
             <span className="text-link-caption">
               {isSignUp ? "Already have an account?" : "Don't have an account?"}
             </span>
@@ -72,7 +72,7 @@ const AuthForm = ({ isSignUp }) => {
                   <input type="checkbox" className="checkbox checkbox-sm checkbox-warning opacity-70" />
                   <span className="text-link-caption">Remember me</span>
                 </label>
-                <Link to="/forgot-password" className="text-link">Forgot password?</Link>
+                <Link to="/reset-password" className="text-link">Forgot password?</Link>
               </div>
             )}
             <div className="h-0.5"></div>
@@ -97,7 +97,7 @@ const AuthForm = ({ isSignUp }) => {
 };
 
 // 📌 Forgot Password Page
-export const ForgotPassword = () => (
+export const ResetPassword = () => (
   <AuthLayout>
     <div className="space-y-5 flex flex-col h-full justify-center items-center">
       <h2 className="text-title text-center">Reset Password</h2>

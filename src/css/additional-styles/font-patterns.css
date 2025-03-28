@@ -65,7 +65,7 @@
 /* 🔹 Standard Body Text */
 .text-body {
   font-family: "Noto Sans", sans-serif;
-  font-size: var(--font-t4);
+  font-size: var(--font-t5);
   line-height: var(--line-height-t4);
   font-weight: 700;
   color: var(--color-gray-800);

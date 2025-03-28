@@ -1,3 +1,5 @@
+import { BiSupport } from "react-icons/bi"; 
+import { FaHeadset } from "react-icons/fa"; 
 import { BiUserCircle } from "react-icons/bi"; 
 import { BiHomeAlt, BiBell } from "react-icons/bi";
 import { PiPlantBold } from "react-icons/pi";
@@ -47,9 +49,9 @@ const settings = [
     type: "link",
   },
   {
-    title: "Help",
-    path: "/help",
-    icon: LuBadgeHelp,
+    title: "Support",
+    path: "/support",
+    icon: BiSupport,
     type: "link",
   },
 ];

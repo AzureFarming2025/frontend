@@ -6,21 +6,28 @@ import "./css/style.css";
 import Sidebar from "./components/partials/Sidebar";
 import Header from "./components/partials/Header";
 
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/home/Dashboard";
 import Activities from "./pages/Activities";
-import Profile from "./pages/Profile";
-import About from "./pages/About";
+import ProfilePage from "./pages/profile/ProfilePage";
+import AboutUsPage from "./pages/support/AboutUsPage";
 import Details from "./pages/Details";
 import Templates from "./pages/Templates";
-import { SignIn, SignUp, ForgotPassword } from "./pages/Auth";
+import { SignIn, SignUp, ResetPassword } from "./pages/auth/Auth";
+import Settings from "./pages/Settings";
+import ContactUsPage from "./pages/support/ContactUsPage";
 
 function App() {
   const location = useLocation();
-  const [sidebarExpanded, setSidebarExpanded] = useState(() =>
-    window.innerWidth < 1024
-      ? true
-      : JSON.parse(localStorage.getItem("sidebar-expanded")) ?? false
-  );
+  const [sidebarExpanded, setSidebarExpanded] = useState(() => {
+    try {
+      return window.innerWidth < 1024
+        ? true
+        : JSON.parse(localStorage.getItem("sidebar-expanded")) ?? false;
+    } catch (error) {
+      console.error("Error parsing sidebar-expanded from localStorage:", error);
+      return false; // Default to false if parsing fails
+    }
+  });
 
   const BoardLayout = () => (
     <div className="flex h-screen w-screen overflow-hidden">
@@ -75,14 +82,16 @@ function App() {
         {/* Auth routes */}
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Main layout */}
         <Route path="/" element={<BoardLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="activities" element={<Activities />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="about" element={<About />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="about" element={<AboutUsPage />} />
+          <Route path="support" element={<ContactUsPage />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         {/* Standalone pages */}
