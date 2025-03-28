@@ -1,3 +1,4 @@
+import { BiUserCircle } from "react-icons/bi"; 
 import { BiHomeAlt, BiBell } from "react-icons/bi";
 import { PiPlantBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
@@ -34,9 +35,9 @@ const navigation = [
 // ✅ User & Settings 섹션
 const settings = [
   {
-    title: "Notifications",
-    path: "/notifications",
-    icon: BiBell,
+    title: "Profile",
+    path: "/profile",
+    icon: CgProfile,
     type: "link",
   },
   {
