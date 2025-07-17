@@ -38,10 +38,10 @@ function DoughnutChart({
             display: false,
           },
           tooltip: {
-            titleColor: darkMode ? tooltipTitleColor.dark : tooltipTitleColor.light,
-            bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
-            backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
-            borderColor: darkMode ? tooltipBorderColor.dark : tooltipBorderColor.light,
+            titleColor: tooltipTitleColor,
+            bodyColor: tooltipBodyColor,
+            backgroundColor: tooltipBgColor,
+            borderColor: tooltipBorderColor,
           },
         },
         interaction: {
@@ -71,7 +71,7 @@ function DoughnutChart({
               li.style.margin = '4px';
               // Button element
               const button = document.createElement('button');
-              button.classList.add('btn-xs', 'bg-white', 'dark:bg-gray-700', 'text-gray-500', 'dark:text-gray-400', 'shadow-xs', 'shadow-black/[0.08]', 'rounded-full');
+              button.classList.add('btn-xs', 'bg-white', 'text-gray-500', 'shadow-xs', 'shadow-black/[0.08]', 'rounded-full');
               button.style.opacity = item.hidden ? '.3' : '';
               button.onclick = () => {
                 c.toggleDataVisibility(item.index);
@@ -115,10 +115,10 @@ function DoughnutChart({
       chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.dark;
       chart.options.plugins.tooltip.borderColor = tooltipBorderColor.dark;
     } else {
-      chart.options.plugins.tooltip.titleColor = tooltipTitleColor.light;
-      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor.light;
-      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.light;
-      chart.options.plugins.tooltip.borderColor = tooltipBorderColor.light;
+      chart.options.plugins.tooltip.titleColor = tooltipTitleColor;
+      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor;
+      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor;
+      chart.options.plugins.tooltip.borderColor = tooltipBorderColor;
     }
     chart.update('none');
   }, [currentTheme]);

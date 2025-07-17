@@ -54,9 +54,9 @@ function LineChart01({
               title: () => false, // Disable tooltip title
               label: (context) => formatValue(context.parsed.y),
             },
-            bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
-            backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
-            borderColor: darkMode ? tooltipBorderColor.dark : tooltipBorderColor.light,
+            bodyColor: tooltipBodyColor,
+            backgroundColor: tooltipBgColor,
+            borderColor: tooltipBorderColor,
           },
           legend: {
             display: false,
@@ -83,9 +83,9 @@ function LineChart01({
       chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.dark;
       chart.options.plugins.tooltip.borderColor = tooltipBorderColor.dark;
     } else {
-      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor.light;
-      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.light;
-      chart.options.plugins.tooltip.borderColor = tooltipBorderColor.light;
+      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor;
+      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor;
+      chart.options.plugins.tooltip.borderColor = tooltipBorderColor;
     }
     chart.update('none');
   }, [currentTheme]);

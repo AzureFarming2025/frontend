@@ -49,7 +49,7 @@ function Templates() {
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
               {/* Left: Title */}
               <div className="mb-4 sm:mb-0">
-                <h1 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">
+                <h1 className="text-2xl md:text-3xl text-gray-800 font-bold">
                   Dashboard
                 </h1>
               </div>
@@ -61,7 +61,7 @@ function Templates() {
                 {/* Datepicker built with React Day Picker */}
                 <Datepicker align="right" />
                 {/* Add view button */}
-                <button className="btn bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">
+                <button className="btn bg-gray-900 text-gray-100 hover:bg-gray-800">
                   <svg
                     className="fill-current shrink-0 xs:hidden"
                     width="16"

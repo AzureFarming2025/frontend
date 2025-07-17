@@ -46,10 +46,10 @@ function RealtimeChart({
             ticks: {
               maxTicksLimit: 5,
               callback: (value) => formatValue(value),
-              color: darkMode ? textColor.dark : textColor.light,
+              color: textColor,
             },
             grid: {
-              color: darkMode ? gridColor.dark : gridColor.light,
+              color: gridColor,
             },
           },
           x: {
@@ -71,7 +71,7 @@ function RealtimeChart({
             ticks: {
               autoSkipPadding: 48,
               maxRotation: 0,
-              color: darkMode ? textColor.dark : textColor.light,
+              color: textColor,
             },
           },
         },
@@ -86,10 +86,10 @@ function RealtimeChart({
             callbacks: {
               label: (context) => formatValue(context.parsed.y),
             },
-            titleColor: darkMode ? tooltipTitleColor.dark : tooltipTitleColor.light,
-            bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
-            backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
-            borderColor: darkMode ? tooltipBorderColor.dark : tooltipBorderColor.light,
+            titleColor: tooltipTitleColor,
+            bodyColor: tooltipBodyColor,
+            backgroundColor: tooltipBgColor,
+            borderColor: tooltipBorderColor,
           },
         },
         interaction: {
@@ -133,13 +133,13 @@ function RealtimeChart({
       chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.dark;
       chart.options.plugins.tooltip.borderColor = tooltipBorderColor.dark;      
     } else {
-      chart.options.scales.x.ticks.color = textColor.light;
-      chart.options.scales.y.ticks.color = textColor.light;
-      chart.options.scales.y.grid.color = gridColor.light;
-      chart.options.plugins.tooltip.titleColor = tooltipTitleColor.light;
-      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor.light;
-      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.light;
-      chart.options.plugins.tooltip.borderColor = tooltipBorderColor.light; 
+      chart.options.scales.x.ticks.color = textColor;
+      chart.options.scales.y.ticks.color = textColor;
+      chart.options.scales.y.grid.color = gridColor;
+      chart.options.plugins.tooltip.titleColor = tooltipTitleColor;
+      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor;
+      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor;
+      chart.options.plugins.tooltip.borderColor = tooltipBorderColor; 
     }
     chart.update('none')
   }, [currentTheme])    
@@ -149,7 +149,7 @@ function RealtimeChart({
     <React.Fragment>
       <div className="px-5 py-3">
         <div className="flex items-start">
-          <div className="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2 tabular-nums">$<span ref={chartValue}>57.81</span></div>
+          <div className="text-3xl font-bold text-gray-800  mr-2 tabular-nums">$<span ref={chartValue}>57.81</span></div>
           <div ref={chartDeviation} className="text-sm font-medium px-1.5 rounded-full"></div>
         </div>
       </div>

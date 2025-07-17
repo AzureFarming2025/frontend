@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { OutlineButton, SolidButton } from "@components/selector/Buttons";
 import { AuthTextInput } from "@components/selector/TextInputs";
 import TermsModal from "@components/partials/TermsModal";
@@ -10,7 +10,7 @@ const AuthLayout = ({ children }) => (
   <div className="w-screen h-screen flex md:flex-row overflow-hidden">
     {/* Left Section - Illustration (PC only) */}
     <div className="hidden h-full md:flex md:w-1/2 p-10 items-center justify-center bg-custom-gradient">
-      <div className="text-green-700 font-bold text-xl font-poppins">Voluptate dolor tempor</div>
+      <div className="text-green-700 font-bold text-xl font-poppins">Currently Under Development</div>
     </div>
     {/* Right Section - Form */}
     <div className="w-full h-full md:w-1/2 bg-white flex justify-center">
@@ -23,6 +23,11 @@ const AuthLayout = ({ children }) => (
 const AuthForm = ({ isSignUp }) => {
   const [showModal, setShowModal] = useState(false);
   const [isTermsChecked, setIsTermsChecked] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSkipLogin = () => {
+    navigate("/dashboard");
+  };
 
   return (
     <>
@@ -84,6 +89,18 @@ const AuthForm = ({ isSignUp }) => {
              text={`${isSignUp ? "Sign up" : "Sign in"} with Google`}
              icon={<FaGoogle size={12} />} 
             />
+            
+            {/* Skip Login Button */}
+            {!isSignUp && (
+              <div className="mt-4 text-center">
+                <button
+                  onClick={handleSkipLogin}
+                  className="text-sm text-gray-500 hover:text-gray-700 underline"
+                >
+                  Skip Login (Demo Mode)
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </AuthLayout>

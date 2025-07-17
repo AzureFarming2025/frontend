@@ -86,7 +86,7 @@ const Sidebar = ({ sidebarExpanded, setSidebarExpanded }) => {
       ref={sidebarRef}
       className={`overflow-hidden
         h-screen flex-1
-        fixed top-0 left-0 z-50 bg-white dark:bg-gray-800 shadow-lg
+        fixed top-0 left-0 z-50 bg-white shadow-lg
         transition-[width,transform] duration-300 ease-in-out
         overflow-hidden
         md:relative
@@ -226,7 +226,7 @@ const SidebarNavItem = ({
       ${
         isSubMenu && isActive
           ? "text-primary font-semibold"
-          : "text-gray-800 dark:text-gray-100"
+          : "text-gray-800"
       }
       ${isDropdownActive && !isActive ? "bg-transparent" : ""}
       ${isSubMenu ? "ml-4 text-sm" : "text-label"}`}
@@ -290,7 +290,7 @@ const SidebarSection = ({ label, sidebarExpanded = true, children }) => (
       </p>
     )}
     {children}
-    <hr className="border-gray-200 dark:border-gray-700 my-4" />
+    <hr className="border-gray-200 my-4" />
   </div>
 );
 

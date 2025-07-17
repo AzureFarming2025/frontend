@@ -27,7 +27,6 @@
 
 @plugin 'tailwind-scrollbar-hide';
 
-@custom-variant dark (&:is(.dark *));
 @custom-variant sidebar-expanded (&:is(.sidebar-expanded *));
 
 .page-transition {

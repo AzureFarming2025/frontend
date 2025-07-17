@@ -6,23 +6,22 @@ const ThemeContext = createContext({
 });
 
 export default function ThemeProvider({children}) {  
-  const persistedTheme = localStorage.getItem('theme');
-  const [theme, setTheme] = useState(persistedTheme || 'light');
+  // Always use light theme - ignore localStorage
+  const [theme, setTheme] = useState('light');
 
   const changeCurrentTheme = (newTheme) => {
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    // Force light theme only
+    setTheme('light');
+    localStorage.setItem('theme', 'light');
   };
 
   useEffect(() => {
     document.documentElement.classList.add('**:transition-none!');
-    if (theme === 'light') {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.style.colorScheme = 'light';
-    } else {
-      document.documentElement.classList.add('dark');
-      document.documentElement.style.colorScheme = 'dark';
-    }
+    // Always set light theme
+    document.documentElement.classList.remove('dark');
+    document.documentElement.style.colorScheme = 'light';
+    // Force DaisyUI light theme
+    document.documentElement.setAttribute('data-theme', 'light');
 
     const transitionTimeout = setTimeout(() => {
       document.documentElement.classList.remove('**:transition-none!');
@@ -31,7 +30,7 @@ export default function ThemeProvider({children}) {
     return () => clearTimeout(transitionTimeout);
   }, [theme]);
 
-  return <ThemeContext.Provider value={{ currentTheme: theme, changeCurrentTheme }}>{children}</ThemeContext.Provider>;
+  return <ThemeContext.Provider value={{ currentTheme: 'light', changeCurrentTheme }}>{children}</ThemeContext.Provider>;
 }
 
 export const useThemeProvider = () => useContext(ThemeContext);

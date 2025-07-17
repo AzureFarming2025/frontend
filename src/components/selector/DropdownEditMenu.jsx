@@ -39,8 +39,8 @@ function DropdownEditMenu({
         ref={trigger}
         className={`rounded-full ${
           dropdownOpen
-            ? 'bg-gray-100 dark:bg-gray-700/60 text-gray-500 dark:text-gray-400'
-            : 'text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400'
+            ? 'bg-gray-100  text-gray-500'
+            : 'text-gray-400 hover:text-gray-500'
         }`}
         aria-haspopup="true"
         onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -56,7 +56,7 @@ function DropdownEditMenu({
       <Transition
         show={dropdownOpen}
         tag="div"
-        className={`origin-top-right z-10 absolute top-full min-w-36 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 py-1.5 rounded-lg shadow-lg overflow-hidden mt-1 ${
+        className={`origin-top-right z-10 absolute top-full min-w-36 bg-white  border border-gray-200  py-1.5 rounded-lg shadow-lg overflow-hidden mt-1 ${
           align === 'right' ? 'right-0' : 'left-0'
         }`}
         enter="transition ease-out duration-200 transform"

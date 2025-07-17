@@ -30,7 +30,7 @@ function App() {
   });
 
   const BoardLayout = () => (
-    <div className="flex h-screen w-screen overflow-hidden">
+    <div className="flex h-screen w-screen overflow-hidden bg-white">
       {/* Sidebar (fixed & full height) */}
       <div className="hidden md:block h-full">
         <Sidebar

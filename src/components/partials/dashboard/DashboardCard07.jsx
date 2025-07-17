@@ -2,16 +2,16 @@ import React from 'react';
 
 function DashboardCard07() {
   return (
-    <div className="col-span-full xl:col-span-8 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-      <header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60">
-        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Top Channels</h2>
+    <div className="col-span-full xl:col-span-8 bg-white shadow-xs rounded-xl">
+      <header className="px-5 py-4 border-b border-gray-100">
+        <h2 className="font-semibold text-gray-800">Top Channels</h2>
       </header>
       <div className="p-3">
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="table-auto w-full dark:text-gray-300">
+          <table className="table-auto w-full">
             {/* Table header */}
-            <thead className="text-xs uppercase text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700/50 rounded-xs">
+            <thead className="text-xs uppercase text-gray-400 bg-gray-50 rounded-xs">
               <tr>
                 <th className="p-2">
                   <div className="font-semibold text-left">Source</div>
@@ -31,7 +31,7 @@ function DashboardCard07() {
               </tr>
             </thead>
             {/* Table body */}
-            <tbody className="text-sm font-medium divide-y divide-gray-100 dark:divide-gray-700/60">
+            <tbody className="text-sm font-medium divide-y divide-gray-100">
               {/* Row */}
               <tr>
                 <td className="p-2">
@@ -43,7 +43,7 @@ function DashboardCard07() {
                         fill="#FFF"
                       />
                     </svg>
-                    <div className="text-gray-800 dark:text-gray-100">Github.com</div>
+                    <div className="text-gray-800">Github.com</div>
                   </div>
                 </td>
                 <td className="p-2">
@@ -71,7 +71,7 @@ function DashboardCard07() {
                         fillRule="nonzero"
                       />
                     </svg>
-                    <div className="text-gray-800 dark:text-gray-100">Facebook</div>
+                    <div className="text-gray-800">Facebook</div>
                   </div>
                 </td>
                 <td className="p-2">
@@ -99,7 +99,7 @@ function DashboardCard07() {
                         fillRule="nonzero"
                       />
                     </svg>
-                    <div className="text-gray-800 dark:text-gray-100">Google (organic)</div>
+                    <div className="text-gray-800">Google (organic)</div>
                   </div>
                 </td>
                 <td className="p-2">
@@ -127,7 +127,7 @@ function DashboardCard07() {
                         fillRule="nonzero"
                       />
                     </svg>
-                    <div className="text-gray-800 dark:text-gray-100">Vimeo.com</div>
+                    <div className="text-gray-800">Vimeo.com</div>
                   </div>
                 </td>
                 <td className="p-2">
@@ -154,7 +154,7 @@ function DashboardCard07() {
                         fill="#E6ECF4"
                       />
                     </svg>
-                    <div className="text-gray-800 dark:text-gray-100">Indiehackers.com</div>
+                    <div className="text-gray-800">Indiehackers.com</div>
                   </div>
                 </td>
                 <td className="p-2">

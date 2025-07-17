@@ -48,10 +48,10 @@ function BarChart01({
             ticks: {
               maxTicksLimit: 5,
               callback: (value) => formatValue(value),
-              color: darkMode ? textColor.dark : textColor.light,
+              color: textColor,
             },
             grid: {
-              color: darkMode ? gridColor.dark : gridColor.light,
+              color: gridColor,
             },
           },
           x: {
@@ -70,7 +70,7 @@ function BarChart01({
               display: false,
             },
             ticks: {
-              color: darkMode ? textColor.dark : textColor.light,
+              color: textColor,
             },
           },
         },
@@ -83,9 +83,9 @@ function BarChart01({
               title: () => false, // Disable tooltip title
               label: (context) => formatValue(context.parsed.y),
             },
-            bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
-            backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
-            borderColor: darkMode ? tooltipBorderColor.dark : tooltipBorderColor.light,
+            bodyColor: tooltipBodyColor,
+            backgroundColor: tooltipBgColor,
+            borderColor: tooltipBorderColor,
           },
         },
         interaction: {
@@ -136,14 +136,14 @@ function BarChart01({
               labelContainer.style.display = 'flex';
               labelContainer.style.alignItems = 'center';
               const value = document.createElement('span');
-              value.classList.add('text-gray-800', 'dark:text-gray-100');
+              value.classList.add('text-gray-800');
               value.style.fontSize = '30px';
               value.style.lineHeight = 'calc(2.25 / 1.875)';
               value.style.fontWeight = '700';
               value.style.marginRight = '8px';
               value.style.pointerEvents = 'none';
               const label = document.createElement('span');
-              label.classList.add('text-gray-500', 'dark:text-gray-400');
+              label.classList.add('text-gray-500');
               label.style.fontSize = '14px';
               label.style.lineHeight = 'calc(1.25 / 0.875)';
               const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0);
@@ -178,12 +178,12 @@ function BarChart01({
       chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.dark;
       chart.options.plugins.tooltip.borderColor = tooltipBorderColor.dark;
     } else {
-      chart.options.scales.x.ticks.color = textColor.light;
-      chart.options.scales.y.ticks.color = textColor.light;
-      chart.options.scales.y.grid.color = gridColor.light;
-      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor.light;
-      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.light;
-      chart.options.plugins.tooltip.borderColor = tooltipBorderColor.light;
+      chart.options.scales.x.ticks.color = textColor;
+      chart.options.scales.y.ticks.color = textColor;
+      chart.options.scales.y.grid.color = gridColor;
+      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor;
+      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor;
+      chart.options.plugins.tooltip.borderColor = tooltipBorderColor;
     }
     chart.update('none');
   }, [currentTheme]);

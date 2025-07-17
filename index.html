@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
@@ -7,16 +7,14 @@
     <title>Vite App</title>
     <script src="http://localhost:5173"></script>
     <script>
-      if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
-        document.querySelector('html').classList.add('dark');
-        document.querySelector('html').style.colorScheme = 'dark';
-      } else {
-        document.querySelector('html').classList.remove('dark');
-        document.querySelector('html').style.colorScheme = 'light';
-      }        
+      // Force light theme always
+      document.querySelector('html').classList.remove('dark');
+      document.querySelector('html').style.colorScheme = 'light';
+      document.querySelector('html').setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
     </script>      
   </head>
-  <body class="font-inter antialiased bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400">
+  <body class="font-inter antialiased bg-gray-100 text-gray-600">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script>
         if (localStorage.getItem('sidebar-expanded') == 'true') {

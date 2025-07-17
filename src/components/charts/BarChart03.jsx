@@ -50,10 +50,10 @@ function BarChart03({
             ticks: {
               maxTicksLimit: 5,
               callback: (value) => formatThousands(value),
-              color: darkMode ? textColor.dark : textColor.light,
+              color: textColor,
             },
             grid: {
-              color: darkMode ? gridColor.dark : gridColor.light,
+              color: gridColor,
             },
           },
           x: {
@@ -75,7 +75,7 @@ function BarChart03({
             ticks: {
               autoSkipPadding: 48,
               maxRotation: 0,
-              color: darkMode ? textColor.dark : textColor.light,
+              color: textColor,
             },
           },
         },
@@ -88,9 +88,9 @@ function BarChart03({
               title: () => false, // Disable tooltip title
               label: (context) => formatThousands(context.parsed.y),
             },
-            bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
-            backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
-            borderColor: darkMode ? tooltipBorderColor.dark : tooltipBorderColor.light,
+            bodyColor: tooltipBodyColor,
+            backgroundColor: tooltipBgColor,
+            borderColor: tooltipBorderColor,
           },
         },
         interaction: {
@@ -137,7 +137,7 @@ function BarChart03({
             box.style.pointerEvents = 'none';
             // Label
             const label = document.createElement('span')
-            label.classList.add('text-gray-500', 'dark:text-gray-400');
+            label.classList.add('text-gray-500');
             label.style.fontSize = '14px';
             label.style.lineHeight = 'calc(1.25 / 0.875)';
             const labelText = document.createTextNode(item.text)
@@ -166,12 +166,12 @@ function BarChart03({
       chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.dark;
       chart.options.plugins.tooltip.borderColor = tooltipBorderColor.dark;
     } else {
-      chart.options.scales.x.ticks.color = textColor.light;
-      chart.options.scales.y.ticks.color = textColor.light;
-      chart.options.scales.y.grid.color = gridColor.light;
-      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor.light;
-      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.light;
-      chart.options.plugins.tooltip.borderColor = tooltipBorderColor.light;
+      chart.options.scales.x.ticks.color = textColor;
+      chart.options.scales.y.ticks.color = textColor;
+      chart.options.scales.y.grid.color = gridColor;
+      chart.options.plugins.tooltip.bodyColor = tooltipBodyColor;
+      chart.options.plugins.tooltip.backgroundColor = tooltipBgColor;
+      chart.options.plugins.tooltip.borderColor = tooltipBorderColor;
     }
     chart.update('none');
   }, [currentTheme]);

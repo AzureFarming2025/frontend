@@ -12,8 +12,7 @@ export default function Settings() {
   return (
     <div className="bg-white min-h-screen p-8 font-sans">
       <Title text="Settings" />
-      <div className="w-screen mx-auto space-y-10 my-10">
-
+      <div className="mx-auto space-y-10 my-10">
         {/* Billing Info Section */}
         <section className="space-y-4">
           <h2 className="text-xl font-semibold flex items-center gap-2">

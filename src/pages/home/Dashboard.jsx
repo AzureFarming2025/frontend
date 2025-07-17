@@ -96,7 +96,7 @@ export default function Dashboard() {
     <div className="bg-white min-h-screen p-8">
       {/* Header */}
       <Title text="Dashboard" />
-      <div className="max-w-screen mx-auto space-y-8 mt-4">
+      <div className="mx-auto space-y-8 mt-4">
         {/* Status Summary */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <StatCard title="Active" value="5" color="bg-green-100 text-green-800" />
@@ -110,36 +110,67 @@ export default function Dashboard() {
 
         {/* Gardening Carousel */}
         <h2 className="text-lg font-bold">My Gardenings</h2>
-
-        <div className="space-y-2 flex flex-row gap-4">      
-          <div className="relative">
-            <div className="flex gap-1 overflow-hidden">
-              {samplePlants.slice(currentIndex, currentIndex + visibleCount).map((plant) => (
-                  <div
-                      key={plant.id}
-                      className="min-w-[220px] bg-white rounded-xl p-4 shadow-glow relative cursor-pointer"
-                      onClick={() => handleCardClick(plant.id)} // 여기!
-                    >
-                      <div className="w-full h-36 rounded-md bg-gray-100">
-                        <img
-                          src={plant.image}
-                          alt={plant.name}
-                          className="w-full h-36 object-cover rounded-md"
-                          loading="lazy"
-                        />
+        <div className="flex">
+          <div className="overflow-x-scroll w-full space-y-2 flex flex-row gap-4">      
+            <div className="relative">
+              <div className="flex gap-1 overflow-hidden">
+                {samplePlants.slice(currentIndex, currentIndex + visibleCount).map((plant) => (
+                    <div
+                        key={plant.id}
+                        className="min-w-[220px] bg-white rounded-xl p-4 shadow-glow relative cursor-pointer"
+                        onClick={() => handleCardClick(plant.id)} 
+                      >
+                        <div className="w-full h-36 rounded-md bg-gray-100">
+                          <img
+                            src={plant.image}
+                            alt={plant.name}
+                            className="w-full h-36 object-cover rounded-md"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="mt-2 font-bold text-lg">{plant.name}</div>
+                        <div className="flex items-center justify-between mt-1 text-sm">
+                          <span className="flex items-center gap-1 text-green-600">
+                            <FaCheckCircle /> {plant.status}
+                          </span>
+                          {plant.label && <Badge color="success">⚡ {plant.label}</Badge>}
+                        </div>
                       </div>
-                      <div className="mt-2 font-bold text-lg">{plant.name}</div>
-                      <div className="flex items-center justify-between mt-1 text-sm">
-                        <span className="flex items-center gap-1 text-green-600">
-                          <FaCheckCircle /> {plant.status}
-                        </span>
-                        {plant.label && <Badge color="success">⚡ {plant.label}</Badge>}
-                      </div>
-                    </div>
-              ))}
+                ))}
+              </div>
+              
+              {/* Carousel Controls */}
+              <div className="absolute -left-6 top-1/2 -translate-y-1/2">
+                <Button
+                  size="sm"
+                  shape="circle"
+                  color="ghost"
+                  onClick={prevSlide}
+                  disabled={currentIndex === 0}
+                >
+                  <HiChevronLeft size={20} />
+                </Button>
+              </div>
+              <div className="absolute -right-6 top-1/2 -translate-y-1/2">
+                <Button
+                  size="sm"
+                  shape="circle"
+                  color="ghost"
+                  onClick={nextSlide}
+                  disabled={currentIndex >= samplePlants.length - visibleCount}
+                >
+                  <HiChevronRight size={20} />
+                </Button>
+              </div>
+            </div>
 
-              {/* Add Card Placeholder with Checklist */}
-              <div className="min-w-[220px] bg-white rounded-xl p-4 shadow-md flex flex-col gap-2">
+            {/* Carousel Indicator */}
+            <div className="text-sm text-gray-500 text-right">
+              {currentIndex + 1} / {samplePlants.length - visibleCount + 1}
+            </div>
+          </div>
+          {/* Add Card Placeholder with Checklist */}
+              <div className="min-w-[220px] bg-white rounded-xl p-4 flex flex-col gap-2 mr-auto">
                 <Button color="success" size="sm">+ Add Plant</Button>
                 <div className="bg-lime-100 rounded-xl p-3 text-sm space-y-1">
                   <p className="font-medium">1/3</p>
@@ -151,39 +182,7 @@ export default function Dashboard() {
                   </ul>
                 </div>
               </div>
-            </div>
-
-            {/* Carousel Controls */}
-            <div className="absolute -left-6 top-1/2 -translate-y-1/2">
-              <Button
-                size="sm"
-                shape="circle"
-                color="ghost"
-                onClick={prevSlide}
-                disabled={currentIndex === 0}
-              >
-                <HiChevronLeft size={20} />
-              </Button>
-            </div>
-            <div className="absolute -right-6 top-1/2 -translate-y-1/2">
-              <Button
-                size="sm"
-                shape="circle"
-                color="ghost"
-                onClick={nextSlide}
-                disabled={currentIndex >= samplePlants.length - visibleCount}
-              >
-                <HiChevronRight size={20} />
-              </Button>
-            </div>
-          </div>
-
-          {/* Carousel Indicator */}
-          <div className="text-sm text-gray-500 text-right">
-            {currentIndex + 1} / {samplePlants.length - visibleCount + 1}
-          </div>
         </div>
-
         {/* Motivational Quote */}
         <div className="bg-white my-10 rounded-xl py-3 px-5 text-center text-sm text-green-800 shadow-sm">
           🌱 Nature doesn’t wait. Today’s small care creates tomorrow’s abundant harvest.
