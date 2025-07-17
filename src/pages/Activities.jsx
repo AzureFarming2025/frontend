@@ -123,7 +123,7 @@ const ActivityGridSection = () => {
 
   return (
     <div className="w-full mt-4">
-      <div className="flex-1 flex justify-between items-center">
+      <div className="flex-1 flex justify-between items-center my-4">
         <h2 className="text-xl font-semibold mb-4">🌱 Activity Grid</h2>
         <div className="join">
           <button className="join-item btn btn-sm btn-soft btn-success" onClick={handlePrev}>
@@ -203,7 +203,7 @@ const AchievementsSection = () => {
 
   const renderStats = [
     {
-      title: "Achievements",
+      title: "Medals",
       value: `${unlockedAchievements}`,
       desc: `/ ${ACHIEVEMENTS.length}`,
       icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
@@ -217,19 +217,19 @@ const AchievementsSection = () => {
       color: "text-secondary",
     },
     {
-      title: "Managed Plants",
+      title: "Plants",
       value: "15",
-      desc: "created",
+      desc: "",
       icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
       color: "text-info",
     },
     {
-      title: "Activity Duration",
-      value: "2 Years",
+      title: "Progress",
+      value: "WIP",
       desc: "",
-      caption: `Joined Since 2023`,
-      icon: "M13 10V3L4 14h7v7l9-11h-7z",
-      color: "text-neutral/60",
+      caption: `since 2025`,
+      // icon: "M13 10V3L4 14h7v7l9-11h-7z",
+      color: "text-neutral-300",
     },
   ];
 
@@ -287,13 +287,13 @@ const AchievementsSection = () => {
           View All
         </Button>
       </div>
-      <Stats className="shadow font-sans overflow-visible">
+      <Stats className="shadow font-sans">
         {renderStats.map((stat, idx) => (
           <Stats.Stat key={idx}>
             <Stats.Stat.Title className={`text-lg font-semibold ${stat.color}`}>{stat.title}</Stats.Stat.Title>
-            <div className={`my-1 flex flex-row justify-between items-top ${stat.color}`}>
+            <div className={`my-1 flex flex-row items-center justify-between items-top ${stat.color}`}>
               <Stats.Stat.Value className="space-x-2">
-                <span className={`text-3xl font-bold ${stat.color}`}>
+                <span className={`text-2xl font-bold ${stat.color}`}>
                 {stat.value}
                 </span>
                 <span className={`text-sm font-medium -mt-1 ${stat.color} opacity-60`}>
