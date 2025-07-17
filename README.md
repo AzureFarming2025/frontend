@@ -1,5 +1,9 @@
 # AzureFarming Frontend
 
+## Hackathon Submission
+
+https://devpost.com/software/azurefarming
+
 ## Built with Tailwind Dashboard Template
 
 ![Mosaic Tailwind admin template preview](https://github.com/cruip/tailwind-dashboard-template/assets/2683512/ef306423-3b89-4d0c-be80-9c5c682478d1)
