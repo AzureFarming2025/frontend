@@ -23,5 +23,15 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          charts: ['chart.js', 'recharts', 'chartjs-adapter-moment'],
+          ui: ['@radix-ui/react-popover', 'react-daisyui', 'react-day-picker'],
+        },
+      },
+    },
   },
+  base: '/',
 });
